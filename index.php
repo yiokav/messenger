@@ -1,10 +1,13 @@
 <?php
+session_start();
 
-require('classes\User.class.php');
+if(!isset($_SESSION['user']) && !isset($_POST['username'])){
+    include('modules/loginform.php');
+}elseif(isset($_POST['username'])){
+    include('modules/login.php');
+}
 
-
-$user = new User();
-$user = $user->login('gkavalakis@gmail.com','m5duic');
-print_r($user);
-
+if(isset($_SESSION['user'])){
+    print_r($_SESSION);
+}
 ?>
