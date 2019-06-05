@@ -62,7 +62,22 @@ class User{
          return false;
       }
    }
-   
+   public function logout(){
+      foreach($this as $value){
+         $value = null;
+      }
+   }
+   public function findUserById($id){
+      $results = $this->db->run_query("SELECT * FROM user WHERE id = '{$id}'");
+      if(isset($results['id'])){
+         $this->id = $results['id'];
+         $this->username = $results['username'];
+         $this->active = $results['active'];
+         return $this;
+      }else{
+         return false;
+      }
+   }
 
 }
 
